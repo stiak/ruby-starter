@@ -4,12 +4,14 @@ RSpec.describe CLI do
   let(:cli) { CLI.new }
 
   describe "wave" do
-    subject(:wave) { cli.wave }
+    let(:name) { "rspec" }
+
+    subject(:wave) { cli.wave(name) }
 
     it "prints some output" do
       allow(cli).to receive(:puts)
       wave
-      expect(cli).to have_received(:puts).with("👋 Hi there!")
+      expect(cli).to have_received(:puts).with("👋 Hi there #{name}!")
     end
   end
 end
