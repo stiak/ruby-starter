@@ -23,17 +23,29 @@ RSpec.describe PopularityTracker do
     let(:content_7) { 7 }
     let(:content_8) { 8 }
 
-    subject(:most_popular) { tracker.most_popular }
-
     it "returns the content ID with highest popularity" do
       tracker.increase_popularity(content_7)
       tracker.increase_popularity(content_7)
       tracker.increase_popularity(content_8)
-      expect(most_popular).to eq(content_7)
+      expect(tracker.most_popular).to eq(content_7)
 
       tracker.increase_popularity(content_8)
       tracker.increase_popularity(content_8)
-      expect(most_popular).to eq(content_8)
+
+      expect(tracker.most_popular).to eq(content_8)
+
+      tracker.increase_popularity(content_7)
+      tracker.increase_popularity(content_7)
+
+      expect(tracker.most_popular).to eq(content_7)
+
+      tracker.increase_popularity(5)
+      tracker.increase_popularity(5)
+      tracker.increase_popularity(5)
+      tracker.increase_popularity(5)
+      tracker.increase_popularity(5)
+
+      expect(tracker.most_popular).to eq(5)
     end
 
   end
